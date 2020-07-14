@@ -1,0 +1,14 @@
+[user]
+    name = Maciej Sawka
+    email = maciejsawka@gmail.com
+[credential]
+    helper = cache --timeout=3600
+[alias]
+    # Put 'TODO:<todo text here>' in any of the tracked files and this command will display it with filename and line number
+    todos = !(echo \"FILE:LINE:TODO\" && grep -Hno \"TODO:.*\" $(git ls-files) | cut -f3 --complement -d:) | column -t -s:
+
+    # Converts github markdown files to plaintext
+    md2txt = !pandoc -f gfm -t plain
+
+    # For every tracked markdown file creates a plaintext copy next to it
+    readmetxt = !git ls-files | grep *.md | xargs -r -I@ sh -c \"pandoc -f gfm -t plain -o \\$(echo @ | sed -e s/.md/.txt/) @\"
