@@ -1,6 +1,5 @@
-[user]
-    name = Maciej Sawka
-    email = maciejsawka@gmail.com
+[include]
+    path = gitconfig.identity
 [credential]
     helper = cache --timeout=3600
 [alias]
@@ -12,3 +11,4 @@
 
     # For every tracked markdown file creates a plaintext copy next to it
     readmetxt = !git ls-files | grep *.md | xargs -r -I@ sh -c \"pandoc -f gfm -t plain -o \\$(echo @ | sed -e s/.md/.txt/) @\"
+	change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f"
