@@ -4,7 +4,7 @@
     helper = cache --timeout=3600
 [alias]
     # Put 'TODO:<text>' in any of the tracked files and this command will display it with filename and line number
-    todos = !grep -Hno "TODO:.*" $(git ls-files) | sed 's/TODO: *//' | column -t -s: -N FILE,LINE,TODO -l 3
+    todos = !grep -Hno "TODO:.*" $(git ls-files) | sed 's/TODO:\\s*//' | column -t -s: -N FILE,LINE,TODO -l 3
 
     # Converts github markdown files to plaintext
     md2txt = !pandoc -f gfm -t plain
