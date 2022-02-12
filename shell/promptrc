@@ -1,0 +1,5 @@
+# prompt colors
+cyan="\[$(tput setaf 36)\]"
+gray="\[$(tput setaf 246)\]"
+reset="\[$(tput sgr0)\]"
+PS1="$gray[$cyan\u$gray@$cyan\h \W$gray]$ $reset"
